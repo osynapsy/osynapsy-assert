@@ -18,23 +18,23 @@ class Assertion
         if ($lowerLimit > $value || $value > $upperLimit) {
             self::raiseException($message);
         }
-        return true;
+        return $value;
     }
 
     public static function digit($value, $message)
-	{
-		if (!\ctype_digit($value)){
-			self::raiseException($message);
-		}
-		return true;
-	}
+    {
+        if (!\ctype_digit($value)){
+            self::raiseException($message);
+        }
+        return $value;
+    }
 
     public static function equal($value1, $value2, $message)
     {
         if ($value1 != $value2) {
             self::raiseException($message);
         }
-        return true;
+        return $value1;
     }
 
     public static function inArray($value, array $values, $message)
@@ -42,7 +42,7 @@ class Assertion
         if (!in_array($value, $values)) {
             self::raiseException($message);
         }
-        return true;
+        return $value;
     }
 
     public static function integer($value, $message)
@@ -50,7 +50,7 @@ class Assertion
         if (!is_int($value)) {
             self::raiseException($message);
         }
-        return true;
+        return $value;
     }
 
     public static function isAssoc(array $array, $message)
@@ -61,6 +61,7 @@ class Assertion
         if (array_keys($array) !== range(0, count($array) - 1)) {
             $this->raiseException($message);
         }
+        return $array;
     }
 
     public static function isEmpty($value, $message)
@@ -68,7 +69,7 @@ class Assertion
         if (!empty($value)) {
             self::raiseException($message);
         }
-        return true;
+        return $value;
     }
 
     public static function isFalse($value, $message)
@@ -76,7 +77,7 @@ class Assertion
         if ($value !== false) {
             self::raiseException($message);
         }
-        return true;
+        return $value;
     }
 
     public static function isTrue($value, $message)
@@ -92,7 +93,7 @@ class Assertion
         if (!filter_var($value, \FILTER_VALIDATE_EMAIL)) {
             self::raiseException($message);
         }
-        return true;
+        return $value;
     }
 
     public static function greaterThan($value, $limit, $message)
@@ -100,7 +101,7 @@ class Assertion
         if ($value <= $limit) {
             self::raiseException($message);
         }
-        return true;
+        return $value;
     }
 
     public static function greaterOrEqualThan($value, $limit, $message)
@@ -108,7 +109,7 @@ class Assertion
         if ($value < $limit) {
             self::raiseException($message);
         }
-        return true;
+        return $value;
     }
 
     public static function lessThan($value, $limit, $message)
@@ -116,7 +117,7 @@ class Assertion
         if ($value >= $limit) {
             self::raiseException($message);
         }
-        return true;
+        return $value;
     }
 
     public static function lessOrEqualThan($value, $limit, $message)
@@ -124,7 +125,7 @@ class Assertion
         if ($value > $limit) {
             self::raiseException($message);
         }
-        return true;
+        return $value;
     }
 
     public static function notEmpty($value, $message)
@@ -132,7 +133,7 @@ class Assertion
         if (empty($value)) {
             self::raiseException($message);
         }
-        return true;
+        return $value;
     }
 
     protected static function raiseException($message, $code = null)
