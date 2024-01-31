@@ -136,6 +136,14 @@ class Assertion
         return $value;
     }
 
+    public static function notEqual($value1, $value2, $message)
+    {
+        if ($value1 == $value2) {
+            self::raiseException($message);
+        }
+        return $value1;
+    }
+    
     protected static function raiseException($message, $code = null)
     {
         throw new AssertException($message, $code);
