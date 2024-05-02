@@ -56,10 +56,10 @@ class Assertion
     public static function isAssoc(array $array, $message)
     {
         if (array() === $array) {
-            $this->raiseException($message);
+            self::raiseException($message);
         }
         if (array_keys($array) !== range(0, count($array) - 1)) {
-            $this->raiseException($message);
+            self::raiseException($message);
         }
         return $array;
     }
@@ -143,7 +143,7 @@ class Assertion
         }
         return $value1;
     }
-    
+
     protected static function raiseException($message, $code = null)
     {
         throw new AssertException($message, $code);
