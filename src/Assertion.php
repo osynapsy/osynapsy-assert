@@ -136,6 +136,14 @@ class Assertion
         return $value;
     }
 
+    public static function notEmptyOrZero($value, $message)
+    {
+        if (empty($value) && !in_array($value, [0,'0'])) {
+            self::raiseException($message);
+        }
+        return $value;
+    }
+
     public static function notEqual($value1, $value2, $message)
     {
         if ($value1 == $value2) {
